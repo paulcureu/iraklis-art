@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --marble-light: #f5f3f0;
+  --marble-cream: #e8e3dc;
+  --marble-beige: #d4c9b8;
+  --marble-gray: #8b8680;
+  --marble-dark: #3d3a36;
+  --accent-gold: #c9a961;
+  --accent-rose: #b89a7a;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--marble-light);
+  color: var(--marble-dark);
+}
+
+/* Smooth scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Elegant gradient backgrounds */
+.gradient-marble {
+  background: linear-gradient(135deg, var(--marble-light) 0%, var(--marble-cream) 100%);
+}
+
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(61, 58, 54, 0.7) 0%,
+    rgba(61, 58, 54, 0.5) 50%,
+    rgba(61, 58, 54, 0.8) 100%
+  );
+}
+
+/* Elegant text shadows */
+.text-elegant {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Elegant borders */
+.border-elegant {
+  border: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
