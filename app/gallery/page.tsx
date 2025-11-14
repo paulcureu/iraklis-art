@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import SculptureSlider from "../components/SculptureSlider";
 import { Playfair_Display } from "next/font/google";
 
@@ -6,12 +9,17 @@ const bokorFont = Playfair_Display({
   weight: "600",
 });
 
+type ArtCategory = "byzantine" | "modern";
+
 const GalleryPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState<ArtCategory>("byzantine");
+
   // Data updated with the correct paths to your images
   const sculptures = [
     {
       id: 1,
       title: "Basreliefs",
+      category: "modern" as ArtCategory,
       images: [
         "/art/Basreliefs/1.jpg",
         "/art/Basreliefs/2.jpg",
@@ -24,6 +32,7 @@ const GalleryPage = () => {
     {
       id: 2,
       title: "Church Georgia ~ 2008-2012",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/ChurchGeorgia/1.jpg",
         "/art/ChurchGeorgia/2.jpg",
@@ -33,6 +42,7 @@ const GalleryPage = () => {
     {
       id: 3,
       title: "Church Georgia ~ 2013",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/ChurchGeorgia1/3.jpg",
         "/art/ChurchGeorgia1/2.jpg",
@@ -43,6 +53,7 @@ const GalleryPage = () => {
     {
       id: 4,
       title: "Church Georgia ~ 2019",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/ChurchGeorgia2/1.jpg",
         "/art/ChurchGeorgia2/2.jpg",
@@ -57,11 +68,13 @@ const GalleryPage = () => {
     {
       id: 5,
       title: "Holly Table ~ Rusia",
+      category: "byzantine" as ArtCategory,
       images: ["/art/HollyTable/2.jpg", "/art/HollyTable/1.jpg"],
     },
     {
       id: 6,
       title: "Iconostas Moscow",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/IconostasMoscow/1.jpg",
         "/art/IconostasMoscow/2.jpg",
@@ -80,6 +93,7 @@ const GalleryPage = () => {
     {
       id: 7,
       title: "Icons",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/IconsArt/1.jpg",
         "/art/IconsArt/2.jpg",
@@ -98,6 +112,7 @@ const GalleryPage = () => {
     {
       id: 8,
       title: "New York ~ exterior stone design ~ 2008-2009",
+      category: "modern" as ArtCategory,
       images: [
         "/art/NewYork/1.jpg",
         "/art/NewYork/2.jpg",
@@ -112,11 +127,13 @@ const GalleryPage = () => {
     {
       id: 9,
       title: "Georgia ~ exterior stone design ~ 2012-2013",
+      category: "modern" as ArtCategory,
       images: ["/art/Georgia/1.jpg", "/art/Georgia/2.jpg"],
     },
     {
       id: 10,
       title: "Marble Kapitels of St.Evangelists ~ Mount Athos ",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/StEvangelists/1.jpg",
         "/art/StEvangelists/2.jpg",
@@ -127,6 +144,7 @@ const GalleryPage = () => {
     {
       id: 11,
       title: "Greece ~ Mount Athos ~ 2023-2025",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/GreecAthos2023/1.jpg",
         "/art/GreecAthos2023/2.jpg",
@@ -139,16 +157,19 @@ const GalleryPage = () => {
     {
       id: 12,
       title: "Greece ~ Mount Athos ~ Archangels",
+      category: "byzantine" as ArtCategory,
       images: ["/art/ArchangelsAthos/1.jpg"],
     },
     {
       id: 13,
       title: "Greece ~ Mount Athos",
+      category: "byzantine" as ArtCategory,
       images: ["/art/ArchangelsAthos/5.jpg"],
     },
     {
       id: 14,
       title: "Greece ~ Mount Athos ~ St.George",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/ArchangelsAthos/6.jpg",
         "/art/ArchangelsAthos/3.jpg",
@@ -158,6 +179,7 @@ const GalleryPage = () => {
     {
       id: 15,
       title: "Greece ~ Mount Athos ~ Monastery",
+      category: "byzantine" as ArtCategory,
       images: [
         "/art/AthosMonastery/1.jpg",
         "/art/AthosMonastery/2.jpg",
@@ -168,6 +190,10 @@ const GalleryPage = () => {
     },
   ];
 
+  const filteredSculptures = sculptures.filter(
+    (sculpture) => sculpture.category === selectedCategory
+  );
+
   return (
     <div className='min-h-screen bg-gradient-to-b from-[#f5f3f0] to-white'>
       <div className='container mx-auto px-4 py-16 pt-24'>
@@ -176,12 +202,36 @@ const GalleryPage = () => {
             Gallery
           </h1>
           <div className='w-32 h-1 bg-[#c9a961] mx-auto mb-6'></div>
-          <p className='text-xl md:text-2xl text-[#8b8680] max-w-3xl mx-auto'>
+          <p className='text-xl md:text-2xl text-[#8b8680] max-w-3xl mx-auto mb-8'>
             Explore the masterful collection of sculptures and artistic works
           </p>
+          
+          {/* Category Selection Buttons */}
+          <div className='flex justify-center gap-4 mb-8'>
+            <button
+              onClick={() => setSelectedCategory("byzantine")}
+              className={`px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 ${
+                selectedCategory === "byzantine"
+                  ? "bg-[#c9a961] text-white shadow-lg scale-105"
+                  : "bg-white text-[#3d3a36] border-2 border-[#c9a961] hover:bg-[#c9a961]/10"
+              }`}
+            >
+              Byzantine Art
+            </button>
+            <button
+              onClick={() => setSelectedCategory("modern")}
+              className={`px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 ${
+                selectedCategory === "modern"
+                  ? "bg-[#c9a961] text-white shadow-lg scale-105"
+                  : "bg-white text-[#3d3a36] border-2 border-[#c9a961] hover:bg-[#c9a961]/10"
+              }`}
+            >
+              Modern Art
+            </button>
+          </div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12'>
-          {sculptures.map((sculpture, index) => (
+          {filteredSculptures.map((sculpture, index) => (
             <div 
               key={sculpture.id}
               className='animate-fade-in-up'
