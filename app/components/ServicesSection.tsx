@@ -3,7 +3,7 @@
 export default function ServicesSection() {
   const services = [
     {
-      title: "Marble Worker",
+      title: "Marble Sculptor",
       description: "Specializing in the intricate art of marble carving, bringing timeless beauty to life through skilled craftsmanship and precision.",
       icon: (
         <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
