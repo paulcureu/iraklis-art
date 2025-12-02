@@ -1,88 +1,120 @@
-const ContactPage = () => {
-  const contactInfo = [
-    {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      label: "Email",
-      value: "narikaleli1@gmail.com",
-      link: "mailto:narikaleli1@gmail.com",
-    },
-    {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      ),
-      label: "Phone",
-      value: "+30 697 542 1099",
-      link: "tel:+306975421099",
-    },
-    {
-      icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
-      ),
-      label: "Instagram",
-      value: "@athoneli.iraklis.art",
-      link: "https://www.instagram.com/athoneli.iraklis.art/",
-      external: true,
-    },
-  ];
+"use client";
 
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin } from "lucide-react";
+
+export default function Contact() {
   return (
-    <div className='min-h-screen bg-gradient-to-b from-[#f5f3f0] to-white'>
-      <div className='container mx-auto px-4 py-16 pt-24'>
-        <div className='text-center mb-16 animate-fade-in-up'>
-          <h1 className='text-5xl md:text-6xl lg:text-7xl font-bold text-[#3d3a36] mb-6'>
-            Contact
-          </h1>
-          <div className='w-32 h-1 bg-[#c9a961] mx-auto mb-6'></div>
-          <p className='text-xl md:text-2xl text-[#8b8680] max-w-3xl mx-auto leading-relaxed'>
-            For any questions, collaborations or requests, please contact us directly. 
-            We are here to provide you with the best artistic solutions.
-          </p>
-        </div>
-
-        <div className='max-w-4xl mx-auto'>
-          <div className='bg-white rounded-3xl shadow-2xl p-8 md:p-12 animate-fade-in-up'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-              {contactInfo.map((info, index) => (
-                <a
-                  key={index}
-                  href={info.link}
-                  target={info.external ? '_blank' : undefined}
-                  rel={info.external ? 'noopener noreferrer' : undefined}
-                  className='group flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-br from-[#f5f3f0] to-[#e8e3dc] hover-lift border border-[#c9a961]/20 transition-all duration-300'
-                >
-                  <div className='text-[#c9a961] mb-4 group-hover:scale-110 transition-transform duration-300'>
-                    {info.icon}
-                  </div>
-                  <h3 className='text-lg font-semibold text-[#3d3a36] mb-2'>
-                    {info.label}
-                  </h3>
-                  <p className='text-[#8b8680] group-hover:text-[#c9a961] transition-colors duration-300 break-all'>
-                    {info.value}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className='mt-12 text-center animate-fade-in-up'>
-            <p className='text-lg text-[#8b8680]'>
-              Looking forward to hearing from you and discussing your artistic vision.
-            </p>
+    <div className="min-h-screen bg-secondary">
+      {/* Hero Section with Image */}
+      <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 hover:scale-105"
+          style={{ backgroundImage: "url('/art/Basreliefs/1.jpg')" }}
+        ></div>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-white text-center p-6">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-4"
+            >
+              Let's <span className="text-accent">Connect</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-base md:text-lg lg:text-xl text-white/80 max-w-2xl mx-auto"
+            >
+              Reach out to discuss your vision, commission a piece, or explore my work
+            </motion.p>
           </div>
         </div>
       </div>
+
+      {/* Contact Information */}
+      <div className="container mx-auto px-6 py-20 md:py-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
+          {/* Email */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="glass-panel p-8 md:p-10 text-center group hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="mb-6 flex justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                <Mail className="w-8 h-8 md:w-10 md:h-10 text-accent" />
+              </div>
+            </div>
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-primary mb-4">Email</h3>
+            <a
+              href="mailto:narikaleli1@gmail.com"
+              className="text-base md:text-lg text-primary/70 hover:text-accent transition-colors duration-300 break-all"
+            >
+              narikaleli1@gmail.com
+            </a>
+          </motion.div>
+
+          {/* Phone */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="glass-panel p-8 md:p-10 text-center group hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="mb-6 flex justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                <Phone className="w-8 h-8 md:w-10 md:h-10 text-accent" />
+              </div>
+            </div>
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-primary mb-4">Phone</h3>
+            <a
+              href="tel:+306975421099"
+              className="text-base md:text-lg text-primary/70 hover:text-accent transition-colors duration-300"
+            >
+              +30 697 542 1099
+            </a>
+          </motion.div>
+
+          {/* Location */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="glass-panel p-8 md:p-10 text-center group hover:shadow-xl transition-shadow duration-300"
+          >
+            <div className="mb-6 flex justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                <MapPin className="w-8 h-8 md:w-10 md:h-10 text-accent" />
+              </div>
+            </div>
+            <h3 className="text-xl md:text-2xl font-serif font-bold text-primary mb-4">Location</h3>
+            <p className="text-base md:text-lg text-primary/70">
+              Mount Athos, Greece
+            </p>
+            <p className="text-sm md:text-base text-primary/50 mt-2">
+              Available Worldwide
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Additional Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center mt-16 md:mt-20 max-w-3xl mx-auto"
+        >
+          <p className="text-lg md:text-xl text-primary/60 font-light italic">
+            "Every stone holds a story waiting to be revealed. Let's create something timeless together."
+          </p>
+          <div className="w-24 h-1 bg-accent mx-auto mt-8 rounded-full"></div>
+        </motion.div>
+      </div>
     </div>
   );
-};
-
-export default ContactPage;
+}

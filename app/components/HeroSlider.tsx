@@ -1,70 +1,117 @@
 "use client";
 
-import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { EffectFade, Autoplay } from "swiper/modules";
+import { EffectFade, Autoplay, Pagination, Parallax } from "swiper/modules";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import TextReveal from "./TextReveal";
 
 const slides = [
   {
-    image: "/backgrounds/hero-background1.jpg",
+    id: 1,
+    image: "/art/Basreliefs/1.jpg",
+    title: "Timeless Elegance",
+    subtitle: "Masterpieces in Stone",
   },
-
   {
-    image: "/backgrounds/hero-background3.jpg",
+    id: 2,
+    image: "/art/ChurchGeorgia/1.jpg",
+    title: "Sacred Architecture",
+    subtitle: "Building for Eternity",
   },
   {
-    image: "/backgrounds/hero-background4.jpg",
+    id: 3,
+    image: "/art/IconsArt/1.jpg",
+    title: "Divine Inspiration",
+    subtitle: "Art that Transcends",
   },
 ];
 
 export default function HeroSlider() {
   return (
-    <div className='relative h-[calc(100vh-4rem)]'>
+    <div className='relative h-screen w-full overflow-hidden'>
       <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         effect={"fade"}
+        speed={1500}
+        parallax={true}
         fadeEffect={{ crossFade: true }}
         autoplay={{
-          delay: 4000,
+          delay: 6000,
           disableOnInteraction: false,
         }}
-        modules={[EffectFade, Autoplay]}
-        className='mySwiper h-full'
+        pagination={{
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + ' !bg-white !w-2 !h-2 !opacity-50 hover:!opacity-100 transition-opacity"></span>';
+          },
+        }}
+        modules={[EffectFade, Autoplay, Pagination, Parallax]}
+        className='h-full w-full'
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={slide.image}
-              alt={`Slide ${index + 1}`}
-              fill // Aceasta o face să umple div-ul părinte (care trebuie să aibă position: relative/absolute)
-              style={{
-                objectFit: "cover", // Folosiți CSS-ul standard prin prop-ul style
-              }}
-            />
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id} className="relative h-full w-full overflow-hidden">
+            <div
+              className="absolute inset-0 w-full h-full transition-transform duration-[10000ms] ease-linear scale-100 hover:scale-110"
+              data-swiper-parallax-scale="1.1"
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority
+                className='object-cover'
+              />
+              <div className='absolute inset-0 bg-black/40' />
+            </div>
+
+            <div className='absolute inset-0 flex items-center justify-center text-center z-10'>
+              <div className='max-w-4xl px-6'>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className='text-accent text-lg md:text-xl uppercase tracking-[0.3em] mb-4'
+                  data-swiper-parallax="-200"
+                >
+                  {slide.subtitle}
+                </motion.p>
+
+                <div className="mb-8 flex justify-center" data-swiper-parallax="-400">
+                  <TextReveal
+                    text={slide.title}
+                    className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight justify-center"
+                    delay={0.4}
+                  />
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  data-swiper-parallax="-600"
+                >
+                  <Link
+                    href='/gallery'
+                    className='inline-block border border-white/30 bg-white/10 backdrop-blur-sm text-white px-10 py-4 uppercase tracking-widest text-sm font-medium hover:bg-white hover:text-primary transition-all duration-300'
+                  >
+                    View Gallery
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className='absolute inset-0 gradient-overlay'></div>
-      <div className='absolute inset-0 flex flex-col justify-center text-center z-10 px-4'>
-        <div className='animate-fade-in-up'>
-          <h1 className='text-6xl md:text-8xl lg:text-9xl text-white font-serif mb-6 text-elegant tracking-tight'>
-            Iraklis
-          </h1>
-          <p className='mt-6 text-xl md:text-3xl lg:text-4xl text-[#e8e3dc] font-light mb-12 tracking-wide'>
-            Timeless Beauty, Carved in Stone
-          </p>
-          <Link
-            href='/gallery'
-            className='mt-8 inline-block bg-[#c9a961] text-white font-semibold py-4 px-10 rounded-full shadow-2xl hover:bg-[#b89a7a] hover:shadow-[#c9a961]/50 transition-all duration-300 transform hover:scale-105 text-lg tracking-wide'
-          >
-            View Gallery
-          </Link>
-        </div>
+
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
       </div>
     </div>
   );
