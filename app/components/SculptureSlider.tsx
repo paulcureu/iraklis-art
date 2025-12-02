@@ -33,7 +33,7 @@ const SculptureSlider = ({ images }: SculptureSliderProps) => {
   return (
     <>
       <div
-        className='relative w-full h-80 overflow-hidden group bg-[#e8e3dc] cursor-pointer'
+        className='relative w-full h-80 overflow-hidden group bg-secondary-dark cursor-pointer'
         onClick={() => {
           setPhotoIndex(currentIndex);
           setOpen(true);
@@ -48,14 +48,14 @@ const SculptureSlider = ({ images }: SculptureSliderProps) => {
           }}
           className='transition-transform duration-500 group-hover:scale-110'
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+        <div className='absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
         <div className='absolute inset-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
           <button
             onClick={(e) => {
               e.stopPropagation();
               goToPrevious();
             }}
-            className='bg-[#c9a961] bg-opacity-90 text-white p-3 rounded-full ml-4 hover:bg-opacity-100 hover:scale-110 transition-all duration-300 shadow-lg'
+            className='bg-accent bg-opacity-90 text-white p-3 rounded-full ml-4 hover:bg-opacity-100 hover:scale-110 transition-all duration-300 shadow-lg'
             aria-label="Previous image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ const SculptureSlider = ({ images }: SculptureSliderProps) => {
               e.stopPropagation();
               goToNext();
             }}
-            className='bg-[#c9a961] bg-opacity-90 text-white p-3 rounded-full mr-4 hover:bg-opacity-100 hover:scale-110 transition-all duration-300 shadow-lg'
+            className='bg-accent bg-opacity-90 text-white p-3 rounded-full mr-4 hover:bg-opacity-100 hover:scale-110 transition-all duration-300 shadow-lg'
             aria-label="Next image"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@ const SculptureSlider = ({ images }: SculptureSliderProps) => {
               <div
                 key={idx}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? 'bg-[#c9a961] w-6' : 'bg-white/60'
+                  idx === currentIndex ? 'bg-accent w-6' : 'bg-white/60'
                 }`}
               />
             ))}

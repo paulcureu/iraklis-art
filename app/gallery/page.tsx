@@ -12,7 +12,8 @@ const bokorFont = Playfair_Display({
 type ArtCategory = "byzantine" | "modern";
 
 const GalleryPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<ArtCategory>("byzantine");
+  const [selectedCategory, setSelectedCategory] =
+    useState<ArtCategory>("byzantine");
 
   // Data updated with the correct paths to your images
   const sculptures = [
@@ -195,25 +196,25 @@ const GalleryPage = () => {
   );
 
   return (
-    <div className='min-h-screen bg-gradient-to-b from-[#f5f3f0] to-white'>
+    <div className='min-h-screen bg-linear-to-b from-secundary to-white'>
       <div className='container mx-auto px-4 py-16 pt-24'>
         <div className='text-center mb-16 animate-fade-in-up'>
           <h1 className='text-5xl md:text-6xl lg:text-7xl font-bold text-[#3d3a36] mb-6'>
             Gallery
           </h1>
-          <div className='w-32 h-1 bg-[#c9a961] mx-auto mb-6'></div>
+          <div className='w-32 h-1 bg-accent mx-auto mb-6'></div>
           <p className='text-xl md:text-2xl text-[#8b8680] max-w-3xl mx-auto mb-8'>
             Explore the masterful collection of sculptures and artistic works
           </p>
-          
+
           {/* Category Selection Buttons */}
           <div className='flex justify-center gap-4 mb-8'>
             <button
               onClick={() => setSelectedCategory("byzantine")}
               className={`px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 ${
                 selectedCategory === "byzantine"
-                  ? "bg-[#c9a961] text-white shadow-lg scale-105"
-                  : "bg-white text-[#3d3a36] border-2 border-[#c9a961] hover:bg-[#c9a961]/10"
+                  ? "bg-accent text-white shadow-lg scale-105"
+                  : "bg-white text-[#3d3a36] border-accent hover:bg-accent/10"
               }`}
             >
               Byzantine Art
@@ -222,8 +223,8 @@ const GalleryPage = () => {
               onClick={() => setSelectedCategory("modern")}
               className={`px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 ${
                 selectedCategory === "modern"
-                  ? "bg-[#c9a961] text-white shadow-lg scale-105"
-                  : "bg-white text-[#3d3a36] border-2 border-[#c9a961] hover:bg-[#c9a961]/10"
+                  ? "bg-accent text-white shadow-lg scale-105"
+                  : "bg-white text-[#3d3a36] border-2 border-accent hover:bg-accent/10"
               }`}
             >
               Modern Art
@@ -232,12 +233,12 @@ const GalleryPage = () => {
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12'>
           {filteredSculptures.map((sculpture, index) => (
-            <div 
+            <div
               key={sculpture.id}
               className='animate-fade-in-up'
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className='bg-white rounded-2xl shadow-xl overflow-hidden hover-lift border border-[#c9a961]/20 transition-all duration-300'>
+              <div className='bg-white rounded-2xl shadow-xl overflow-hidden hover-lift border border-accent/20 transition-all duration-300'>
                 <SculptureSlider images={sculpture.images} />
                 <div className='p-6'>
                   <h3
@@ -246,7 +247,8 @@ const GalleryPage = () => {
                     {sculpture.title}
                   </h3>
                   <p className='text-center text-[#8b8680] mt-2 text-sm'>
-                    {sculpture.images.length} {sculpture.images.length === 1 ? 'image' : 'images'}
+                    {sculpture.images.length}{" "}
+                    {sculpture.images.length === 1 ? "image" : "images"}
                   </p>
                 </div>
               </div>

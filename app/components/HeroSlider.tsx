@@ -47,17 +47,24 @@ export default function HeroSlider() {
         pagination={{
           clickable: true,
           renderBullet: function (index, className) {
-            return '<span class="' + className + ' !bg-white !w-2 !h-2 !opacity-50 hover:!opacity-100 transition-opacity"></span>';
+            return (
+              '<span class="' +
+              className +
+              ' bg-white! w-2! h-2! opacity-50! hover:opacity-100! transition-opacity"></span>'
+            );
           },
         }}
         modules={[EffectFade, Autoplay, Pagination, Parallax]}
         className='h-full w-full'
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id} className="relative h-full w-full overflow-hidden">
+          <SwiperSlide
+            key={slide.id}
+            className='relative h-full w-full overflow-hidden'
+          >
             <div
-              className="absolute inset-0 w-full h-full transition-transform duration-[10000ms] ease-linear scale-100 hover:scale-110"
-              data-swiper-parallax-scale="1.1"
+              className='absolute inset-0 w-full h-full transition-transform duration-10000 ease-linear scale-100 hover:scale-110'
+              data-swiper-parallax-scale='1.1'
             >
               <Image
                 src={slide.image}
@@ -76,15 +83,18 @@ export default function HeroSlider() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className='text-accent text-lg md:text-xl uppercase tracking-[0.3em] mb-4'
-                  data-swiper-parallax="-200"
+                  data-swiper-parallax='-200'
                 >
                   {slide.subtitle}
                 </motion.p>
 
-                <div className="mb-8 flex justify-center" data-swiper-parallax="-400">
+                <div
+                  className='mb-8 flex justify-center'
+                  data-swiper-parallax='-400'
+                >
                   <TextReveal
                     text={slide.title}
-                    className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight justify-center"
+                    className='text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white leading-tight justify-center'
                     delay={0.4}
                   />
                 </div>
@@ -93,7 +103,7 @@ export default function HeroSlider() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  data-swiper-parallax="-600"
+                  data-swiper-parallax='-600'
                 >
                   <Link
                     href='/gallery'
@@ -108,9 +118,19 @@ export default function HeroSlider() {
         ))}
       </Swiper>
 
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <svg className="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      <div className='absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce'>
+        <svg
+          className='w-6 h-6 text-white/50'
+          fill='none'
+          stroke='currentColor'
+          viewBox='0 0 24 24'
+        >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M19 14l-7 7m0 0l-7-7m7 7V3'
+          ></path>
         </svg>
       </div>
     </div>

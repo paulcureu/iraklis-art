@@ -2,7 +2,7 @@
 
 export default function TextureOverlay() {
     return (
-        <div className="pointer-events-none fixed inset-0 z-[100] h-full w-full opacity-[0.07] mix-blend-overlay">
+        <div className="pointer-events-none fixed inset-0 z-100 h-full w-full opacity-[0.07] mix-blend-overlay">
             <div
                 className="absolute inset-0 h-full w-full"
                 style={{
