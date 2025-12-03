@@ -68,7 +68,7 @@ const GalleryPage = () => {
     },
     {
       id: 5,
-      title: "Holly Table ~ Rusia",
+      title: "Holy Table ~ Rusia",
       category: "byzantine" as ArtCategory,
       images: ["/art/HollyTable/2.jpg", "/art/HollyTable/1.jpg"],
     },
